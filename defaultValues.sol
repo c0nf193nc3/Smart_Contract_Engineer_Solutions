@@ -1,24 +1,33 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which this contract is distributed.
-
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title DefaultValues
+ * @notice A Solidity smart contract demonstrating default values of state variables.
+ */
 contract DefaultValues {
-    // Declaring a Solidity smart contract named "DefaultValues."
+    /**
+     * @dev Public signed integer state variable with a default value of 0.
+     */
+    int public i;
 
-    int public i; // Declaring a public signed integer state variable named "i" with a default value of 0.
-    // Signed integers can hold both positive and negative numbers, and the default is 0.
+    /**
+     * @dev Public bytes32 state variable with a default value of all zeros.
+     */
+    bytes32 public b32;
 
-    bytes32 public b32; // Declaring a public bytes32 state variable named "b32" with a default value of all zeros.
-    // The default value of a bytes32 variable is a 32-byte array filled with zeros.
+    /**
+     * @dev Public Ethereum address state variable with a default value of the zero address.
+     */
+    address public addr;
 
-    address public addr; // Declaring a public Ethereum address state variable named "addr" with a default value of the zero address.
-    // The default value of an address is 0x0000000000000000000000000000000000000000.
+    /**
+     * @dev Public unsigned integer state variable with a default value of 0.
+     */
+    uint public u;
 
-    uint public u; // Declaring a public unsigned integer state variable named "u" with a default value of 0.
-    // Unsigned integers can only hold positive numbers or zero, and the default is 0.
-
-    bool public b; // Declaring a public boolean state variable named "b" with a default value of "false."
-    // The default value of a boolean is "false."
+    /**
+     * @dev Public boolean state variable with a default value of "false."
+     */
+    bool public b;
 }
