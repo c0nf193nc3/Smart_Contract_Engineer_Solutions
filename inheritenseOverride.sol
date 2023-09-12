@@ -1,29 +1,46 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which these contracts are distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title A
+ * @dev Contract A defines two functions: `foo` and `bar`.
+ */
 contract A {
+    /**
+     * @notice Returns the string "A".
+     * @return The string "A".
+     */
     function foo() public pure virtual returns (string memory) {
-        // The `virtual` keyword allows this function to be overridden by child contracts.
         return "A";
     }
 
+    /**
+     * @notice Returns the string "A".
+     * @return The string "A".
+     */
     function bar() public pure virtual returns (string memory) {
         return "A";
     }
 }
 
+/**
+ * @title B
+ * @dev Contract B inherits from contract A and overrides its functions.
+ */
 contract B is A {
-    // Inherit from contract A using the keyword 'is'.
-
-    // Overrides the foo() function from contract A.
+    /**
+     * @notice Overrides the `foo` function from contract A.
+     * @return The string "B".
+     */
     function foo() public pure override returns (string memory) {
         return "B";
     }
     
-    // Overrides the bar() function from contract A.
+    /**
+     * @notice Overrides the `bar` function from contract A.
+     * @return The string "B".
+     */
     function bar() public pure override returns (string memory) {
         return "B";
     }
