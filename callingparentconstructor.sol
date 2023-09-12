@@ -1,47 +1,72 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which these contracts are distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title S
+ * @dev This contract represents contract S and contains a public state variable 'name'.
+ */
 contract S {
     string public name;
 
+    /**
+     * @dev Constructor for contract S.
+     * @param _name The initial value for the 'name' state variable.
+     */
     constructor(string memory _name) {
         name = _name;
     }
 }
 
+/**
+ * @title T
+ * @dev This contract represents contract T and contains a public state variable 'text'.
+ */
 contract T {
     string public text;
 
+    /**
+     * @dev Constructor for contract T.
+     * @param _text The initial value for the 'text' state variable.
+     */
     constructor(string memory _text) {
         text = _text;
     }
 }
 
+/**
+ * @title U
+ * @dev This contract inherits from contracts S and T and initializes their state variables.
+ */
 contract U is S("S"), T("T") {
-    // Contract U inherits from contracts S and T and calls their constructors with specific arguments.
-    // As a result, U will have the state variables "name" and "text" initialized with "S" and "T," respectively.
-    // Both parent contracts' constructors are called in the constructor of U.
-
+    // No additional functionality is provided in this contract.
 }
 
+/**
+ * @title V
+ * @dev This contract inherits from contracts S and T and initializes their state variables using a custom constructor.
+ */
 contract V is S, T {
-    // Contract V inherits from contracts S and T but does not provide constructor arguments.
-    // Instead, it defines its own constructor that takes two string arguments and initializes both parent contracts.
-    
+    /**
+     * @dev Constructor for contract V.
+     * @param _name The initial value for the 'name' state variable.
+     * @param _text The initial value for the 'text' state variable.
+     */
     constructor(string memory _name, string memory _text) S(_name) T(_text) {
-        // Here, the constructor of V calls the constructors of S and T with the provided arguments.
-        // This allows V to set the state variables "name" and "text" with custom values.
+        // Constructor initializes state variables 'name' and 'text' with custom values.
     }
 }
 
+/**
+ * @title W
+ * @dev This contract inherits from contract S and T, initializing the 'text' state variable.
+ */
 contract W is S("S"), T {
-    // Contract W inherits from contract S and T, but it calls only the constructor of T with a single argument.
-    
+    /**
+     * @dev Constructor for contract W.
+     * @param _s The initial value for the 'text' state variable.
+     */
     constructor(string memory _s) T(_s) {
-        // Here, the constructor of W calls the constructor of T with the provided argument.
-        // As a result, W initializes the state variable "text" with the value of _s, and "name" remains "S."
+        // Constructor initializes the 'text' state variable with a custom value while 'name' remains "S".
     }
 }
