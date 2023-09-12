@@ -1,64 +1,79 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which this contract is distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title VisibilityBase
+ * @dev This contract represents a base contract with various visibility modifiers and functions.
+ */
 contract VisibilityBase {
-    // Declaring a Solidity smart contract named "VisibilityBase."
+    uint private x = 0;
+    uint internal y = 1;
+    uint public z = 2;
 
-    uint private x = 0; // Declaring a private state variable "x" with an initial value of 0.
-    uint internal y = 1; // Declaring an internal state variable "y" with an initial value of 1.
-    uint public z = 2; // Declaring a public state variable "z" with an initial value of 2.
-
+    /**
+     * @dev Private function that returns 0.
+     * @return An unsigned integer 0.
+     */
     function privateFunc() private pure returns (uint) {
-        // A private function "privateFunc" that returns an unsigned integer (uint).
         return 0;
     }
 
+    /**
+     * @dev Internal function that returns 100.
+     * @return An unsigned integer 100.
+     */
     function internalFunc() internal pure returns (uint) {
-        // An internal function "internalFunc" that returns an unsigned integer (uint).
         return 100;
     }
 
+    /**
+     * @dev Public function that returns 200.
+     * @return An unsigned integer 200.
+     */
     function publicFunc() public pure returns (uint) {
-        // A public function "publicFunc" that returns an unsigned integer (uint).
         return 200;
     }
 
+    /**
+     * @dev External function that returns 300.
+     * @return An unsigned integer 300.
+     */
     function externalFunc() external pure returns (uint) {
-        // An external function "externalFunc" that returns an unsigned integer (uint).
         return 300;
     }
 
+    /**
+     * @dev Public external function that demonstrates the usage of various visibility modifiers and functions.
+     */
     function examples() external view {
-        // A public external function "examples" that demonstrates the usage of various visibility modifiers and functions.
-        
-        x + y + z; // Accessing state variables with different visibility modifiers.
-
-        privateFunc(); // Calling privateFunc within the same contract is allowed.
-        internalFunc(); // Calling internalFunc within the same contract is allowed.
-        publicFunc(); // Calling publicFunc within the same contract is allowed.
-
-        this.externalFunc(); // Calling externalFunc via "this" is allowed within the same contract.
+        x + y + z;
+        privateFunc();
+        internalFunc();
+        publicFunc();
+        this.externalFunc();
     }
 }
 
+/**
+ * @title VisibilityChild
+ * @dev This contract represents a child contract that inherits from VisibilityBase.
+ */
 contract VisibilityChild is VisibilityBase {
-    // Declaring a Solidity smart contract named "VisibilityChild" that inherits from "VisibilityBase."
-
+    /**
+     * @dev Public function in the child contract that demonstrates the usage of inherited state variables and functions.
+     */
     function examples2() public view {
-        // A public function "examples2" in the child contract that demonstrates the usage of inherited state variables and functions.
-        
-        y + z; // Accessing inherited state variables with different visibility modifiers.
-
-        internalFunc(); // Calling internalFunc, inherited from the parent contract, is allowed.
-        publicFunc(); // Calling publicFunc, inherited from the parent contract, is allowed.
+        y + z;
+        internalFunc();
+        publicFunc();
     }
 
+    /**
+     * @dev Public function in the child contract that returns the sum of inherited state variables and function calls.
+     * @return The sum of y, z, internalFunc(), and publicFunc().
+     */
     function test() public view returns (uint) {
-        // A public function "test" in the child contract that returns the sum of inherited state variables and function calls.
-        
         return y + z + internalFunc() + publicFunc();
     }
 }
