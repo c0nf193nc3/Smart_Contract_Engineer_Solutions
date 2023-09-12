@@ -1,40 +1,67 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-// This is the base contract 'X'
+/**
+ * @title X
+ * @dev This is the base contract 'X' defining two functions: 'foo' and 'bar'.
+ */
 contract X {
-    // The 'foo' function returns the string "X" and is marked as pure.
+    /**
+     * @notice Returns the string "X".
+     * @return The string "X".
+     */
     function foo() public pure virtual returns (string memory) {
         return "X";
     }
 
-    // The 'bar' function also returns the string "X" and is marked as pure.
+    /**
+     * @notice Returns the string "X".
+     * @return The string "X".
+     */
     function bar() public pure virtual returns (string memory) {
         return "X";
     }
 }
 
-// Contract 'Y' inherits from 'X'
+/**
+ * @title Y
+ * @dev Contract 'Y' inherits from 'X' and overrides its functions.
+ */
 contract Y is X {
-    // The 'foo' function overrides the 'foo' function in 'X' and returns the string "Y".
+    /**
+     * @notice Overrides the 'foo' function in 'X' and returns the string "Y".
+     * @return The string "Y".
+     */
     function foo() public pure virtual override returns (string memory) {
         return "Y";
     }
 
-    // The 'bar' function also overrides the 'bar' function in 'X' and returns the string "Y".
+    /**
+     * @notice Overrides the 'bar' function in 'X' and returns the string "Y".
+     * @return The string "Y".
+     */
     function bar() public pure virtual override returns (string memory) {
         return "Y";
     }
 }
 
-// Contract 'Z' inherits from both 'X' and 'Y'
+/**
+ * @title Z
+ * @dev Contract 'Z' inherits from both 'X' and 'Y' and overrides their functions.
+ */
 contract Z is X, Y {
-    // The 'foo' function in 'Z' overrides both the 'foo' functions in 'X' and 'Y' and returns the string "Z".
+    /**
+     * @notice Overrides both the 'foo' functions in 'X' and 'Y' and returns the string "Z".
+     * @return The string "Z".
+     */
     function foo() public pure override(X, Y) returns (string memory) {
         return "Z";
     }
 
-    // The 'bar' function in 'Z' also overrides both the 'bar' functions in 'X' and 'Y' and returns the string "Z".
+    /**
+     * @notice Overrides both the 'bar' functions in 'X' and 'Y' and returns the string "Z".
+     * @return The string "Z".
+     */
     function bar() public pure override(X, Y) returns (string memory) {
         return "Z";
     }
