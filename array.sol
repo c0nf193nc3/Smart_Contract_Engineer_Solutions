@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which this contract is distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title ArrayBasic
+ * @dev This contract demonstrates basic array operations in Solidity.
+ */
 contract ArrayBasic {
-    // Declaring a Solidity smart contract named "ArrayBasic."
+    uint[] public arr;
+    uint[] public arr2 = [1, 2, 3];
+    uint[3] public arrFixedSize;
 
-    uint[] public arr; // A public dynamic array of unsigned integers.
-    uint[] public arr2 = [1, 2, 3]; // A public dynamic array with initial values [1, 2, 3].
-
-    uint[3] public arrFixedSize; // A public fixed-size array of unsigned integers with length 3, initialized to [0, 0, 0].
-
+    /**
+     * @dev Demonstrates various array operations.
+     */
     function examples() public {
-        // A public function named "examples" that demonstrates various array operations.
-
         arr.push(1); // Adding an element "1" to the dynamic array "arr."
 
         uint first = arr[0]; // Reading the first element of the dynamic array "arr."
@@ -35,28 +35,37 @@ contract ArrayBasic {
         // Note: Memory-based arrays do not support push and pop operations.
     }
 
+    /**
+     * @dev Retrieves the value at a specified index in the dynamic array "arr."
+     * @param i The index of the element to retrieve.
+     * @return The value at the specified index.
+     */
     function get(uint i) public view returns (uint) {
-        // A public view function named "get" that retrieves the value at a specified index "i" in the dynamic array "arr."
-
         return arr[i];
     }
 
+    /**
+     * @dev Adds an element "x" to the end of the dynamic array "arr."
+     * @param x The element to add.
+     */
     function push(uint x) public {
-        // A public function named "push" that adds an element "x" to the end of the dynamic array "arr."
-
         arr.push(x);
     }
 
+    /**
+     * @dev Deletes the element at a specified index in the dynamic array "arr."
+     * @param i The index of the element to delete.
+     * Note: Deletion only resets the value to the default (zero for uint).
+     */
     function remove(uint i) public {
-        // A public function named "remove" that deletes the element at a specified index "i" in the dynamic array "arr."
-
         delete arr[i];
-        // Note: Deletion only resets the value to the default (zero for uint).
     }
 
+    /**
+     * @dev Retrieves the length of the dynamic array "arr."
+     * @return The length of the dynamic array.
+     */
     function getLength() public view returns (uint) {
-        // A public view function named "getLength" that retrieves the length of the dynamic array "arr."
-
         return arr.length;
     }
 }
