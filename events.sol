@@ -1,40 +1,48 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which this contract is distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title Event Contract
+ * @dev This contract demonstrates the usage of events in Solidity.
+ */
 contract Event {
-    // Declaring a Solidity smart contract named "Event."
-
+    /**
+     * @notice Emitted when a generic log message is recorded.
+     * @param message The message string.
+     * @param val The associated unsigned integer value.
+     */
     event Log(string message, uint val);
-    // Declaring an event named "Log" with two parameters: a string "message" and an unsigned integer "val."
-    // This event is used to log arbitrary messages along with an associated value.
 
+    /**
+     * @notice Emitted when a log message is recorded with an indexed sender.
+     * @param sender The sender's address (indexed).
+     * @param val The associated unsigned integer value.
+     */
     event IndexedLog(address indexed sender, uint val);
-    // Declaring another event named "IndexedLog" with an indexed address parameter "sender" and an unsigned integer "val."
-    // Indexing an event parameter allows for more efficient searches and filtering when querying the event logs.
 
+    /**
+     * @notice Demonstrates emitting the "Log" and "IndexedLog" events with sample data.
+     */
     function examples() public {
-        // A public function named "examples" that demonstrates the usage of events.
-        // It emits both "Log" and "IndexedLog" events with sample data.
-
         emit Log("Foo", 123);
-        // Emitting a "Log" event with the message "Foo" and the value 123.
-        
         emit IndexedLog(msg.sender, 123);
-        // Emitting an "IndexedLog" event with the sender's address (indexed) and the value 123.
     }
-    
+
+    /**
+     * @notice Emitted when a message is sent between addresses.
+     * @param _from The sender's address.
+     * @param _to The recipient's address.
+     * @param _message The message content.
+     */
     event Message(address _from, address _to, string _message);
-    // Declaring another event named "Message" with three parameters: "_from" (address), "_to" (address), and "_message" (string).
-    // This event is designed to log messages sent between addresses.
 
+    /**
+     * @notice Allows users to send messages and logs them as events.
+     * @param _addr The recipient's address.
+     * @param _message The message content.
+     */
     function sendMessage(address _addr, string calldata _message) public {
-        // A public function named "sendMessage" that allows users to send messages and logs them as events.
-        // It takes two arguments: "_addr" (address) representing the recipient's address and "_message" (string) representing the message.
-
         emit Message(msg.sender, _addr, _message);
-        // Emitting a "Message" event to log the sender's address, recipient's address, and the message content.
     }
 }
