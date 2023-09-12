@@ -1,40 +1,45 @@
 // SPDX-License-Identifier: MIT
-// The above comment specifies the license under which this contract is distributed.
 
 pragma solidity ^0.8.17;
-// Specifies the version of the Solidity compiler to use. In this case, version 0.8.17 or higher is required.
 
+/**
+ * @title EtherWallet
+ * @dev This contract represents an Ether wallet that can receive and send Ether.
+ */
 contract EtherWallet {
-    // Declaring a Solidity smart contract named "EtherWallet."
-
     address payable public owner;
-    // Declaring a public state variable named "owner" with the `payable` keyword.
-    // The `payable` keyword indicates that this address can receive Ether.
 
+    /**
+     * @dev Constructor for the EtherWallet contract.
+     * Initializes the 'owner' state variable with the address of the contract deployer.
+     * The 'owner' address is declared as 'payable', allowing it to receive Ether.
+     */
     constructor() {
         owner = payable(msg.sender);
-        // The constructor function is executed once during contract deployment.
-        // It assigns the address of the contract creator (msg.sender) to the "owner" state variable.
-        // The "owner" address is declared as `payable`, allowing it to receive Ether.
     }
-    
-    receive() external payable {
-        // The receive function, declared as external and payable.
-        // This function is executed when the contract receives Ether with a simple transfer, such as "address.transfer(value)".
-        // It can be used to receive Ether into the contract.
-    }
-    
-    function withdraw(uint _amount) external {
-        // A public external function named "withdraw" for allowing the owner to withdraw Ether from the contract.
 
+    /**
+     * @dev Receive function.
+     * Executed when the contract receives Ether with a simple transfer, e.g., "address.transfer(value)".
+     * Used to receive Ether into the contract.
+     */
+    receive() external payable {
+        // Custom behavior for handling Ether transfers using the "receive" method.
+    }
+
+    /**
+     * @dev Withdraw Ether from the contract.
+     * @param _amount The amount of Ether to withdraw.
+     */
+    function withdraw(uint _amount) external {
         require(msg.sender == owner, "owner only");
-        // Ensuring that only the owner can initiate this function call. If the caller is not the owner, the function will revert with an error message.
+        // Ensure that only the owner can initiate this function call. If not, revert with an error message.
 
         (bool sent, ) = owner.call{value: _amount}("");
-        // Using the "call" function with the "value" field to send Ether from the contract to the owner.
+        // Use the "call" function with the "value" field to send Ether from the contract to the owner.
         // The "value" field specifies the amount of Ether to send.
 
         require(sent, "Failed to send Ether");
-        // If the call operation fails, the contract reverts with an error message.
+        // If the call operation fails, revert with an error message.
     }
 }
